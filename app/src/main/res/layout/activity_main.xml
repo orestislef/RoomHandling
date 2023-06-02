@@ -11,14 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Id here" />
+        android:hint="Id here"
+        android:imeOptions="flagNoExtractUi"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/inputET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Name here" />
+        android:hint="Name here"
+        android:imeOptions="flagNoExtractUi"
+        android:singleLine="true" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,9 +24,19 @@ import gr.orestislef.roomhandling.utils.RandomTextGenerator;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     EditText nameET, idET;
-    RoomDB database;
-    RecyclerView myObjRV;
-    MyObjRVAdapter myObjRVAdapter;
+    static RoomDB database;
+    static RecyclerView myObjRV;
+    static MyObjRVAdapter myObjRVAdapter;
+
+    private static final String ID_KEY = "id";
+    private static final String NAME_KEY = "name";
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(ID_KEY, idET.getText().toString());
+        outState.putString(NAME_KEY, nameET.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         idET = findViewById(R.id.idET);
         nameET = findViewById(R.id.inputET);
+
+        if (savedInstanceState != null) {
+            idET.setText(savedInstanceState.getString(ID_KEY));
+            nameET.setText(savedInstanceState.getString(NAME_KEY));
+        }
 
         Button insertBTN, deleteBTN, updateBTN, fakeBTN;
         insertBTN = findViewById(R.id.insertBTN);
